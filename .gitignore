@@ -31,3 +31,6 @@ go.work.sum
 
 # Build dir
 bin/
+
+# Mac
+.DS_Store
