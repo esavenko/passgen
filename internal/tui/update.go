@@ -8,18 +8,25 @@ import (
 	"github.com/evertras/bubble-table/table"
 )
 
-func (m model) Init() tea.Cmd {
+func (m Model) Init() tea.Cmd {
 	return nil
 }
 
-func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	var cmd tea.Cmd
+func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	var (
+		cmd  tea.Cmd
+		cmds []tea.Cmd
+	)
+
+	m.table, cmd = m.table.Update(msg)
+	cmds = append(cmds, cmd)
+	m.updateFocus(m.table.GetHighlightedRowIndex())
 
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.String() {
 		case "ctrl+c", "q":
-			return m, tea.Quit
+			cmds = append(cmds, tea.Quit)
 
 		case "enter":
 			if m.focused == "generate" {
@@ -36,88 +43,75 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				} else {
 					m.password = password
 				}
-
-				return m, nil
 			}
-
-		case " ":
-			m.toogleBool()
 
 		case "left":
 			m.changeLength(-1)
 
 		case "right":
 			m.changeLength(1)
+
+		case " ":
+			m.toggleCheckboxValue()
 		}
 	}
-	m.table, cmd = m.table.Update(msg)
-	m.updateFocus()
 
-	return m, cmd
+	return m, tea.Batch(cmds...)
 }
 
-func (m *model) updateFocus() {
-	switch m.table.GetHighlightedRowIndex() {
+func (m *Model) updateFocus(index int) string {
+	switch index {
 	case 0:
 		m.focused = "length"
 	case 1:
 		m.focused = "useDigits"
 	case 2:
-		m.focused = "useSymbols"
+		m.focused = "useSpecialSymbols"
 	case 3:
 		m.focused = "generate"
 	}
+
+	return m.focused
 }
 
-func (m *model) toogleBool() {
-	switch m.focused {
-	case "useDigits":
-		m.useDigits = !m.useDigits
-		m.updateTableValue()
-
-	case "useSymbols":
-		m.useSpecialSymbols = !m.useSpecialSymbols
-		m.updateTableValue()
-	}
-}
-
-func (m *model) changeLength(change int) {
+func (m *Model) changeLength(count int) {
 	if m.focused == "length" {
-		m.length += change
+		m.length += count
+
 		if m.length < 1 {
 			m.length = 1
 		}
-		m.updateTableValue()
+
+		m.updateTable()
 	}
 }
 
-func (m *model) updateTableValue() {
-	newRows := []table.Row{
-		table.NewRow(table.RowData{
-			columnKeyOption: "Length",
-			columnKeyValue:  strconv.Itoa(m.length),
-		}),
-		table.NewRow(table.RowData{
-			columnKeyOption: "Use Digits",
-			columnKeyValue:  m.getCheckboxValue(m.useDigits),
-		}),
-		table.NewRow(table.RowData{
-			columnKeyOption: "Use Symbols",
-			columnKeyValue:  m.getCheckboxValue(m.useSpecialSymbols),
-		}),
-		table.NewRow(table.RowData{
-			columnKeyOption: "Generate",
-			columnKeyValue:  "",
-		}),
+func (m *Model) toggleCheckboxValue() {
+	switch m.focused {
+	case "useDigits":
+		m.useDigits = !m.useDigits
+		m.updateTable()
+	case "useSpecialSymbols":
+		m.useSpecialSymbols = !m.useSpecialSymbols
+		m.updateTable()
 	}
-
-	m.table = m.table.WithRows(newRows)
 }
 
-func (m *model) getCheckboxValue(checked bool) string {
-	if checked {
-		return "✓"
+func (m *Model) getCheckboxValue(checked bool) string {
+	if !checked {
+		return "✗"
 	}
 
-	return "✗"
+	return "✓"
+}
+
+func (m *Model) updateTable() {
+	updatedRows := []table.Row{
+		makeRow("Length", strconv.Itoa(m.length)),
+		makeRow("Use Digits", m.getCheckboxValue(m.useDigits)),
+		makeRow("Use Symbols", m.getCheckboxValue(m.useSpecialSymbols)),
+		makeRow("Generate", ""),
+	}
+
+	m.table = m.table.WithRows(updatedRows)
 }

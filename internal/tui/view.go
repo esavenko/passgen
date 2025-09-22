@@ -9,7 +9,7 @@ import (
 var (
 	titleStyle = lipgloss.NewStyle().
 			Bold(true).
-			Foreground(lipgloss.Color("63")).
+			Foreground(lipgloss.Color("230")).
 			PaddingBottom(1)
 
 	errorStyle = lipgloss.NewStyle().
@@ -23,30 +23,34 @@ var (
 			PaddingBottom(1)
 
 	helpStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("240"))
+			Foreground(lipgloss.Color("230"))
 )
 
-func (m model) View() string {
+func (m Model) View() string {
 	if m.err != nil {
 		return errorStyle.Render(fmt.Sprintf("Error: %v", m.err))
 	}
 
-	s := titleStyle.Render("Password Generator\n")
-	s += m.table.View()
+	view := lipgloss.JoinVertical(
+		lipgloss.Left,
+		titleStyle.Render(`
+	This utility is designed for password generation.
+Currently, it supports the number of characters, numbers, and special characters.`),
+		m.table.View(),
+	) + "\n"
 
 	if m.password != "" {
-		s += passwordStyle.Render(fmt.Sprintf("\nGenerated Password %s", m.password))
-		s += helpStyle.Render("\n\nPress q to quiet")
+		view += passwordStyle.Render("Generated password: " + m.password)
+		view += helpStyle.Render("\nPress q to quiet")
 	} else {
-		s += helpStyle.Render(`
+		view += helpStyle.Render(`
 Navigation:
-	↑/↓: Select option
-	←/→: Adjust length
-	Space: Toggle option
-	Enter: Generate password
-	q: Quit
-`)
+	↑/↓: Select option    
+	←/→: Adjust length    
+	Space: Toggle option    
+	Enter: Generate password    
+	q: Quit`)
 	}
 
-	return s
+	return lipgloss.NewStyle().MarginLeft(1).Render(view)
 }

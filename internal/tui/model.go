@@ -5,16 +5,15 @@ import (
 	"github.com/evertras/bubble-table/table"
 )
 
-type model struct {
+type Model struct {
 	/** Configuration*/
 	length            int
 	useDigits         bool
 	useSpecialSymbols bool
 
 	/** UI */
-	table     table.Model
-	tableData []table.RowData
-	focused   string
+	table   table.Model
+	focused string
 
 	/** Password */
 	password string
@@ -26,44 +25,33 @@ const (
 	columnKeyValue  = "value"
 )
 
-func initialModel() model {
-	columns := []table.Column{
-		table.NewColumn(columnKeyOption, "Option", 20),
-		table.NewColumn(columnKeyValue, "Value", 15),
-	}
+func makeRow(option, value string) table.Row {
+	return table.NewRow(table.RowData{
+		columnKeyOption: option,
+		columnKeyValue:  value,
+	})
+}
 
-	rows := []table.Row{
-		table.NewRow(table.RowData{
-			columnKeyOption: "Length",
-			columnKeyValue:  "12",
-		}),
-		table.NewRow(table.RowData{
-			columnKeyOption: "Use Digits",
-			columnKeyValue:  "✓",
-		}),
-		table.NewRow(table.RowData{
-			columnKeyOption: "Use Symbols",
-			columnKeyValue:  "✓",
-		}),
-		table.NewRow(table.RowData{
-			columnKeyOption: "Generate",
-			columnKeyValue:  "",
-		}),
-	}
-
-	initialTable := table.New(columns).
-		WithRows(rows).
-		Focused(true)
-
-	return model{
-		length:            12,
+func NewModel() Model {
+	return Model{
+		length:            15,
 		useDigits:         true,
 		useSpecialSymbols: true,
-		table:             initialTable,
 		focused:           "length",
+
+		table: table.New([]table.Column{
+			table.NewColumn(columnKeyOption, "Option", 25),
+			table.NewColumn(columnKeyValue, "Value", 25),
+		}).WithRows([]table.Row{
+			makeRow("Length", "15"),
+			makeRow("Use Digits", "✓"),
+			makeRow("Use Symbols", "✓"),
+			makeRow("Generate", ""),
+		}).
+			Focused(true),
 	}
 }
 
 func NewProgram() *tea.Program {
-	return tea.NewProgram(initialModel())
+	return tea.NewProgram(NewModel())
 }
