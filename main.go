@@ -2,7 +2,8 @@ package main
 
 import (
 	"os"
-	"passgen/internal/tui"
+
+	"github.com/esavenko/passgen/internal/tui"
 )
 
 func main() {

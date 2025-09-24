@@ -2,13 +2,13 @@ BINARY_NAME=passgen
 
 # Build for macOS
 build:
-	go build -o bin/$(BINARY_NAME) ./cmd/passgen
+	go build -o bin/$(BINARY_NAME) .
 
 # Build for macOS/Linux/Windows
 build-all:
-	GOOS=darwin GOARCH=arm64 go build -o bin/$(BINARY_NAME)-darwin-arm64 ./cmd/passgen
-	GOOS=linux GOARCH=amd64 go build -o bin/$(BINARY_NAME)-linux-amd64 ./cmd/passgen
-	GOOS=windows GOARCH=amd64 go build -o bin/$(BINARY_NAME)-windows-amd64.exe ./cmd/passgen
+	GOOS=darwin GOARCH=arm64 go build -o bin/$(BINARY_NAME)-darwin-arm64 .
+	GOOS=linux GOARCH=amd64 go build -o bin/$(BINARY_NAME)-linux-amd64 .
+	GOOS=windows GOARCH=amd64 go build -o bin/$(BINARY_NAME)-windows-amd64.exe .
 
 clean:
 	rm -rf bin/

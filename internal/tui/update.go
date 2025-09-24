@@ -1,11 +1,12 @@
 package tui
 
 import (
-	"passgen/internal/app"
 	"strconv"
 
 	"github.com/atotto/clipboard"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/esavenko/passgen/internal/app"
+
 	"github.com/evertras/bubble-table/table"
 )
 
