@@ -41,6 +41,7 @@ Currently, it supports the number of characters, numbers, and special characters
 
 	if m.password != "" {
 		view += passwordStyle.Render("Generated password: " + m.password)
+		view += helpStyle.Render("\nPress c to copy the password to the clipboard")
 		view += helpStyle.Render("\nPress q to quiet")
 	} else {
 		view += helpStyle.Render(`

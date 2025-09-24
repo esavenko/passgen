@@ -4,6 +4,7 @@ import (
 	"passgen/internal/app"
 	"strconv"
 
+	"github.com/atotto/clipboard"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/evertras/bubble-table/table"
 )
@@ -45,6 +46,9 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				}
 			}
 
+		case "c", "C":
+			m.copyPassword()
+
 		case "left":
 			m.changeLength(-1)
 
@@ -72,6 +76,13 @@ func (m *Model) updateFocus(index int) string {
 	}
 
 	return m.focused
+}
+
+func (m *Model) copyPassword() {
+	err := clipboard.WriteAll(m.password)
+	if err != nil {
+		return
+	}
 }
 
 func (m *Model) changeLength(count int) {
