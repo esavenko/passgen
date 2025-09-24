@@ -2,6 +2,12 @@
 
 A simple cli util for generating passwords in a couple of clicks.
 
+## Go installation
+
+``` bash
+go install github.com/esavenko/passgen@latest
+```
+
 ## Manual installation
 
 1. Clone the repo:
