@@ -7,7 +7,7 @@ A simple cli util for generating passwords in a couple of clicks.
 ### Via curl (macOS/Linux)
 
 ``` bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/esavenko/passgen/main/install.sh)"
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/esavenko/passgen/master/install.sh)"
 ```
 
 ### Go installation
