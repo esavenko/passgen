@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/esavenko/passgen/compare/v0.4.1...v0.4.2) (2025-09-25)
+
+
+### Bug Fixes
+
+* change install branch ([64a17bb](https://github.com/esavenko/passgen/commit/64a17bbd709c40f7c5fe33c281d169a6e785b653))
+
 ## [0.4.1](https://github.com/esavenko/passgen/compare/v0.4.0...v0.4.1) (2025-09-25)
 
 
