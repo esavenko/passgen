@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/esavenko/passgen/compare/v0.3.0...v0.4.0) (2025-09-25)
+
+
+### Features
+
+* curl installation ([e62e50e](https://github.com/esavenko/passgen/commit/e62e50ece255ed391c7371a8f7853765b62305b1))
+
 ## [0.3.0](https://github.com/esavenko/passgen/compare/v0.2.0...v0.3.0) (2025-09-24)
 
 
