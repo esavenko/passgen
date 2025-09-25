@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/esavenko/passgen/compare/v0.4.0...v0.4.1) (2025-09-25)
+
+
+### Bug Fixes
+
+* fix install command ([34be69e](https://github.com/esavenko/passgen/commit/34be69e5fa628185be7f3425ed70cd582bd13211))
+
 ## [0.4.0](https://github.com/esavenko/passgen/compare/v0.3.0...v0.4.0) (2025-09-25)
 
 
