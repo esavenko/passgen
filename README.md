@@ -13,7 +13,7 @@ sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/esavenko/passgen/ma
 ### Go installation
 
 ``` bash
-go install github.com/esavenko/passgen@latest
+go install github.com/esavenko/passgen/cmd/passgen@latest
 ```
 
 ## Manual installation

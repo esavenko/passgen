@@ -4,6 +4,8 @@ import (
 	"crypto/rand"
 	"math/big"
 	"strings"
+
+	"github.com/esavenko/passgen/common/constants"
 )
 
 type GeneratorConfig struct {
@@ -15,18 +17,14 @@ type GeneratorConfig struct {
 func GeneratePassword(cfg GeneratorConfig) (string, error) {
 	var charPool string
 
-	letters := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	digits := "0123456789"
-	symbols := "!@#$%^&*()_+-=[]{}|;:',./<>?"
-
-	charPool = letters
+	charPool = constants.Letters
 
 	if cfg.UseDigits {
-		charPool += digits
+		charPool += constants.Digits
 	}
 
 	if cfg.UseSpecialSymbols {
-		charPool += symbols
+		charPool += constants.SpecialSymbols
 	}
 
 	var password strings.Builder
