@@ -7,11 +7,16 @@ import (
 	"github.com/esavenko/passgen/common/constants"
 )
 
+const (
+	dotChar = " • "
+)
+
 var (
 	mainStyle      = lipgloss.NewStyle().MarginLeft(2)
 	secondaryStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("230"))
+	submainStyle   = lipgloss.NewStyle().Foreground(lipgloss.Color("241"))
 	checkboxStyle  = lipgloss.NewStyle().Foreground(lipgloss.Color("212"))
-	errorStyle     = lipgloss.NewStyle().Foreground(lipgloss.Color("1"))
+	dotStyle       = lipgloss.NewStyle().Foreground(lipgloss.Color("236")).Render(dotChar)
 )
 
 func (m *Model) View() string {
@@ -28,13 +33,18 @@ func (m *Model) View() string {
 func (m *Model) choicesView() string {
 	c := m.Choice
 
+	tpl := "%s\n\n"
+	tpl += submainStyle.Render("up/down: navigation") + dotStyle +
+		submainStyle.Render("enter: choose") + dotStyle +
+		submainStyle.Render("q: quit")
+
 	choices := fmt.Sprintf(
 		"%s\n%s\n",
 		toggleCheckbox("Generate password", c == 0),
 		toggleCheckbox("Quit", c == 1),
 	)
 
-	return fmt.Sprintf(choices)
+	return fmt.Sprintf(tpl, choices)
 }
 
 func toggleCheckbox(label string, checked bool) string {
