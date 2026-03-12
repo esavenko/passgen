@@ -39,9 +39,10 @@ func (m *Model) choicesView() string {
 		submainStyle.Render("q: quit")
 
 	choices := fmt.Sprintf(
-		"%s\n%s\n",
+		"%s\n%s\n%s\n",
 		toggleCheckbox("Generate password", c == 0),
-		toggleCheckbox("Quit", c == 1),
+		toggleCheckbox("Settings", c == 1),
+		toggleCheckbox("Quit", c == 2),
 	)
 
 	return fmt.Sprintf(tpl, choices)

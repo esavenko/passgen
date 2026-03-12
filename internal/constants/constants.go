@@ -11,6 +11,7 @@ const (
 const (
 	Menu Screen = iota
 	PasswordGeneration
+	Settings
 )
 
 const (

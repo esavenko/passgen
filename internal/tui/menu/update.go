@@ -15,8 +15,8 @@ func (m *Model) updateChoices(msg tea.Msg) (tea.Model, tea.Cmd) {
 		switch msg.String() {
 		case "down", "j":
 			m.Choice++
-			if m.Choice > 1 {
-				m.Choice = 1
+			if m.Choice > 2 {
+				m.Choice = 2
 			}
 
 		case "up", "k":
@@ -26,10 +26,14 @@ func (m *Model) updateChoices(msg tea.Msg) (tea.Model, tea.Cmd) {
 			}
 
 		case "enter":
-			if m.Choice == 1 {
+			switch m.Choice {
+			case 0:
+				return m, func() tea.Msg { return messages.SwitchToGenerationMsg{} }
+			case 1:
+				return m, func() tea.Msg { return messages.SwitchToSettingsMsg{} }
+			case 2:
 				return m, tea.Quit
 			}
-			return m, func() tea.Msg { return messages.SwitchToGenerationMsg{} }
 
 		case "q":
 			return m, tea.Quit
