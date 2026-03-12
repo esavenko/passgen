@@ -2,7 +2,7 @@
 
 set -e
 
-# Определяем ОС и архитектуру
+# Check OS
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(uname -m)
 
@@ -32,7 +32,7 @@ case $ARCH in
         ;;
 esac
 
-# Получаем последнюю версию из GitHub API
+# Get actual version
 LATEST_VERSION=$(curl -s https://api.github.com/repos/esavenko/passgen/releases/latest | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
 
 if [ -z "$LATEST_VERSION" ]; then
@@ -40,10 +40,10 @@ if [ -z "$LATEST_VERSION" ]; then
     exit 1
 fi
 
-# URL для скачивания
+# URL
 DOWNLOAD_URL="https://github.com/esavenko/passgen/releases/download/${LATEST_VERSION}/passgen_${OS}_${ARCH}.tar.gz"
 
-# Директория для установки
+# Dir for installation
 INSTALL_DIR="/usr/local/bin"
 if [ ! -w "$INSTALL_DIR" ]; then
     INSTALL_DIR="$HOME/bin"
@@ -51,7 +51,7 @@ if [ ! -w "$INSTALL_DIR" ]; then
     export PATH="$INSTALL_DIR:$PATH"
 fi
 
-# Скачиваем и устанавливаем
+# Download and install
 echo "Downloading passgen ${LATEST_VERSION} for ${OS} ${ARCH}..."
 curl -L -o /tmp/passgen.tar.gz "$DOWNLOAD_URL"
 
