@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.5.0](https://github.com/esavenko/passgen/compare/v0.4.2...v0.5.0) (2026-03-12)
+
+
+### Features
+
+* add info block for main screen ([08853e6](https://github.com/esavenko/passgen/commit/08853e6a554ca1fc8b5d544a8c4e2ed97bc07707))
+* add multiscreens support, screen states separation ([9d05e96](https://github.com/esavenko/passgen/commit/9d05e961e20e3f9b236cfbfd820fd7b1608239a4))
+* add settings window ([1f1b493](https://github.com/esavenko/passgen/commit/1f1b4931cab3bc04f24dc86489ace39745e0658a))
+* update README ([a5eeafc](https://github.com/esavenko/passgen/commit/a5eeafc41fbdf5a64fce1f19392e92a0c7b2d8ca))
+
 ## [0.4.2](https://github.com/esavenko/passgen/compare/v0.4.1...v0.4.2) (2025-09-25)
 
 
