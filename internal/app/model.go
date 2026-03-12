@@ -2,8 +2,8 @@ package app
 
 import (
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/esavenko/passgen/common/constants"
-	"github.com/esavenko/passgen/common/messages"
+	"github.com/esavenko/passgen/internal/constants"
+	"github.com/esavenko/passgen/internal/messages"
 	"github.com/esavenko/passgen/internal/tui/generation"
 	"github.com/esavenko/passgen/internal/tui/menu"
 )
@@ -27,7 +27,7 @@ func (m *Model) Init() tea.Cmd { return nil }
 func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
-		if msg.String() == "ctrl + c" || msg.String() == "q" {
+		if msg.String() == "ctrl+c" {
 			return m, tea.Quit
 		}
 

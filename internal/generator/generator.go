@@ -1,11 +1,11 @@
-package app
+package generator
 
 import (
 	"crypto/rand"
 	"math/big"
 	"strings"
 
-	"github.com/esavenko/passgen/common/constants"
+	"github.com/esavenko/passgen/internal/constants"
 )
 
 type GeneratorConfig struct {

@@ -2,7 +2,7 @@ package menu
 
 import (
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/esavenko/passgen/common/messages"
+	"github.com/esavenko/passgen/internal/messages"
 )
 
 func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
@@ -26,11 +26,13 @@ func (m *Model) updateChoices(msg tea.Msg) (tea.Model, tea.Cmd) {
 			}
 
 		case "enter":
-			m.Chosen = true
 			if m.Choice == 1 {
 				return m, tea.Quit
 			}
 			return m, func() tea.Msg { return messages.SwitchToGenerationMsg{} }
+
+		case "q":
+			return m, tea.Quit
 		}
 	}
 

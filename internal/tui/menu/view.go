@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/esavenko/passgen/common/constants"
+	"github.com/esavenko/passgen/internal/constants"
 )
 
 const (
