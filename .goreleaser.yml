@@ -1,3 +1,5 @@
+version: 2
+
 project_name: passgen
 
 before:
@@ -5,7 +7,8 @@ before:
     - go mod tidy
 
 builds:
-  - env:
+  - main: ./cmd/passgen
+    env:
       - CGO_ENABLED=0
     goos:
       - linux
@@ -21,7 +24,8 @@ builds:
       - -X main.date={{.Date}}
 
 archives:
-  - format: tar.gz
+  - formats:
+      - tar.gz
     name_template: >-
       {{ .ProjectName }}_
       {{- title .Os }}_
@@ -31,14 +35,29 @@ archives:
       {{- if .Arm }}v{{ .Arm }}{{ end }}
     format_overrides:
       - goos: windows
-        format: zip
+        formats:
+          - zip
 
 changelog:
   sort: asc
+  groups:
+    - title: "Breaking Changes"
+      regexp: '^.*!:|BREAKING CHANGE'
+      order: 0
+    - title: "Features"
+      regexp: '^feat'
+      order: 1
+    - title: "Bug Fixes"
+      regexp: '^fix'
+      order: 2
+    - title: "Refactoring"
+      regexp: '^refactor'
+      order: 3
+    - title: "Other"
+      order: 999
   filters:
     exclude:
       - '^docs:'
-      - '^test:'
 
 release:
   github:
