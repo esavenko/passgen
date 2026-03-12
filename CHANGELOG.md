@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/esavenko/passgen/compare/v0.5.0...v1.0.0) (2026-03-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* pipeline config updated to v2
+
+### Features
+
+* pipeline config updated to v2 ([461a6af](https://github.com/esavenko/passgen/commit/461a6afc9631ed5231420be2a7bb9d760d3982bd))
+
 ## [0.5.0](https://github.com/esavenko/passgen/compare/v0.4.2...v0.5.0) (2026-03-12)
 
 
