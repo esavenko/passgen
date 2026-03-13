@@ -45,10 +45,10 @@ DOWNLOAD_URL="https://github.com/esavenko/passgen/releases/download/${LATEST_VER
 
 # Dir for installation
 INSTALL_DIR="/usr/local/bin"
-if [ ! -w "$INSTALL_DIR" ]; then
+if [ "$(id -u)" -ne 0 ] && [ ! -w "$INSTALL_DIR" ]; then
     INSTALL_DIR="$HOME/bin"
     mkdir -p "$INSTALL_DIR"
-    export PATH="$INSTALL_DIR:$PATH"
+    echo "Note: Add $INSTALL_DIR to your PATH if it's not already there."
 fi
 
 # Download and install
