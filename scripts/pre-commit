@@ -8,5 +8,5 @@ if [ -n "$UNFORMATTED" ]; then
     exit 1
 fi
 
-# Static analysis
-go vet ./...
+# Linting
+golangci-lint run ./...
