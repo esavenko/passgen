@@ -1,0 +1,14 @@
+#!/bin/sh
+
+MSG=$(head -1 "$1")
+
+if ! echo "$MSG" | grep -qE '^(feat|fix|test|chore|docs|refactor|style|perf|ci|build|revert)(\(.+\))?(!)?: .+'; then
+    echo "Invalid commit message: $MSG"
+    echo ""
+    echo "Must follow Conventional Commits:"
+    echo "  <type>: <description>"
+    echo "  <type>(scope): <description>"
+    echo ""
+    echo "Allowed types: feat, fix, test, chore, docs, refactor, style, perf, ci, build, revert"
+    exit 1
+fi

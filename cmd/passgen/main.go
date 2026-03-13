@@ -8,9 +8,9 @@ import (
 )
 
 var (
-	version = "dev"
-	commit  = "none"
-	date    = "unknown"
+	version = "dev"     //nolint:unused // injected via ldflags by goreleaser
+	commit  = "none"    //nolint:unused // injected via ldflags by goreleaser
+	date    = "unknown" //nolint:unused // injected via ldflags by goreleaser
 )
 
 func main() {
