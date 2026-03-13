@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/esavenko/passgen/compare/v1.1.1...v1.1.2) (2026-03-13)
+
+
+### Bug Fixes
+
+* install script ([02c43eb](https://github.com/esavenko/passgen/commit/02c43eb5770208f7c48087be38b00ae235afd5dd))
+
 ## [1.1.1](https://github.com/esavenko/passgen/compare/v1.1.0...v1.1.1) (2026-03-13)
 
 
