@@ -91,7 +91,7 @@ func TestToggleDigits(t *testing.T) {
 
 	// toggle back with space
 	updated, _ = m.Update(keyMsg(" "))
-	m = updated.(*Model)
+	_ = updated.(*Model)
 
 	if cfg.UseDigits != original {
 		t.Error("UseDigits was not toggled back on space")
@@ -110,7 +110,7 @@ func TestToggleSpecialSymbols(t *testing.T) {
 
 	original := cfg.UseSpecialSymbols
 	updated, _ = m.Update(specialKeyMsg(tea.KeyEnter))
-	m = updated.(*Model)
+	_ = updated.(*Model)
 
 	if cfg.UseSpecialSymbols == original {
 		t.Error("UseSpecialSymbols was not toggled")
