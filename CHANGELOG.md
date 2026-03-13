@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/esavenko/passgen/compare/v1.0.0...v1.1.0) (2026-03-13)
+
+
+### Features
+
+* add pre-commit hooks ([a65185e](https://github.com/esavenko/passgen/commit/a65185ec266cd131ad4d0dbf86f6f5f7bc12e9a5))
+* add pre-merge jobs ([c0fad57](https://github.com/esavenko/passgen/commit/c0fad577d951f8485777eb9ba8ba705c83a0119f))
+
 ## [1.0.0](https://github.com/esavenko/passgen/compare/v0.5.0...v1.0.0) (2026-03-12)
 
 
