@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Check formatting
+UNFORMATTED=$(gofmt -l .)
+if [ -n "$UNFORMATTED" ]; then
+    echo "gofmt: the following files need formatting:"
+    echo "$UNFORMATTED"
+    exit 1
+fi
+
+# Static analysis
+go vet ./...
