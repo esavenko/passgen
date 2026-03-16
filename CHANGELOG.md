@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/esavenko/passgen/compare/v1.1.2...v1.2.0) (2026-03-16)
+
+
+### Features
+
+* add flags support ([846e293](https://github.com/esavenko/passgen/commit/846e2938f7fd0aad9129b566e09dbc7b057b71c3))
+* add test coverage ([796001c](https://github.com/esavenko/passgen/commit/796001c12b56b01d7382a3ab8603d5984dab57aa))
+
+
+### Bug Fixes
+
+* update local linting ([3216365](https://github.com/esavenko/passgen/commit/3216365e1051f16a50a05607be4d02d03dc8da9b))
+
 ## [1.1.2](https://github.com/esavenko/passgen/compare/v1.1.1...v1.1.2) (2026-03-13)
 
 
